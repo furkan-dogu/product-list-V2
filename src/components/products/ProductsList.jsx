@@ -8,6 +8,7 @@ import { Header } from "../header/Header";
 const ProductsList = () => {
 
   const [newArr, setNewArr] = useState (products)
+  const [btnActive, setBtnActive] = useState("all")
 
   const handleCategory = (e) => {
     if(e.target.textContent.toLocaleLowerCase() === "all") {
@@ -15,6 +16,8 @@ const ProductsList = () => {
     } else {
       setNewArr(products.filter((item) => (e.target.textContent.toLocaleLowerCase() === item.category.toLocaleLowerCase())))
     }
+
+    setBtnActive(e.target.textContent.toLocaleLowerCase() === "all" ? "all" : e.target.textContent.toLocaleLowerCase())
   }
 
   const handleSearch = (e) => {
@@ -29,7 +32,7 @@ const ProductsList = () => {
 
   return (
     <>
-      <Header categories={categories} handleCategory={handleCategory} />
+      <Header categories={categories} handleCategory={handleCategory} btnActive={btnActive} />
       <Form.Control
         placeholder="Search Product..."
         type="search"

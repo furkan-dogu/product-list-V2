@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Stack } from "react-bootstrap";
 import "./Header.scss";
 
-export const Header = ({categories, handleCategory}) => {
+export const Header = ({categories, handleCategory, btnActive}) => {
   return (
     <Container className="header">
       <h1>Products List</h1>
@@ -12,7 +12,7 @@ export const Header = ({categories, handleCategory}) => {
         className="btns justify-content-center flex-md-row"
       >
         {categories.map((item) => (
-          <Button key={item} variant="light" onClick={handleCategory}>{item.toLocaleUpperCase()}</Button>
+          <Button key={item} variant="light" className={item.toLocaleLowerCase() === btnActive ? "active" : ""} onClick={handleCategory}>{item.toLocaleUpperCase()}</Button>
         ))}
       </Stack>
     </Container>
