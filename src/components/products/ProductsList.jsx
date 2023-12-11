@@ -40,7 +40,7 @@ const ProductsList = () => {
       <Form.Control
         placeholder="Search Product..."
         type="search"
-        className="w-50 m-auto"
+        className="w-50 mx-auto mt-3"
         onChange={handleSearch}
       />
       <Container className="product-list rounded-4 my-4 p-3">

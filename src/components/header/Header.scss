@@ -8,25 +8,34 @@
   h1 {
     margin-bottom: 1rem;
     font-size: 2.3rem;
-    color: $cardNavBgColor;
+    color: $btnHoverColor;
   }
 
   //! buttons
 
   .btns {
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // flex-wrap: wrap;
 
     button {
       padding: 1rem;
+      width: 70%;
+      color: #A90432;
+      margin: auto;
       border-radius: $borderRadius;
       border: none;
       cursor: pointer;
       transition: all 1s;
       &.active {
         background-color: $btnHoverColor;
+        color: #A90432;
       }
       &:hover {
         background-color: $btnHoverColor;
+        color: #A90432;
       }
     }
   }

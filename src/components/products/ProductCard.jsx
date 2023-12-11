@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
       <Card className="rounded-2 m-auto card" role="button">
         <Card.Header className="d-flex justify-content-between">
           <Card.Title>{price} $</Card.Title>
-          <MdFavorite size={30} className={heart ? "text-danger" : ""} onClick={handleFavorite}/>
+          <MdFavorite size={30} className={heart ? "active-color" : "passive-color"} onClick={handleFavorite}/>
         </Card.Header>
         <Card.Img variant="top" src={image} className="player-logo" />
 
