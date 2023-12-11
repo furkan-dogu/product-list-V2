@@ -12,7 +12,7 @@ export const Header = ({categories, handleCategory, btnActive}) => {
         className="btns justify-content-center flex-md-row"
       >
         {categories.map((item) => (
-          <Button key={item} variant="light" className={item.toLocaleLowerCase() === btnActive ? "active" : ""} onClick={handleCategory}>{item.toLocaleUpperCase()}</Button>
+          <Button key={item} className={item.toLocaleLowerCase() === btnActive && "active"} variant="light" onClick={handleCategory}>{item.toLocaleUpperCase()}</Button>
         ))}
       </Stack>
     </Container>

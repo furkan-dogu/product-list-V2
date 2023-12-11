@@ -7,32 +7,36 @@ import { Header } from "../header/Header";
 
 const ProductsList = () => {
 
-  const [newArr, setNewArr] = useState (products)
-  const [btnActive, setBtnActive] = useState("all")
+  const [filter, setFilter] = useState("all");
+  const [search, setSearch] = useState("");
+  let data = []
 
   const handleCategory = (e) => {
-    if(e.target.textContent.toLocaleLowerCase() === "all") {
-      setNewArr(products)
-    } else {
-      setNewArr(products.filter((item) => (e.target.textContent.toLocaleLowerCase() === item.category.toLocaleLowerCase())))
-    }
+    setFilter(e.target.textContent.toLocaleLowerCase());
+  }
 
-    setBtnActive(e.target.textContent.toLocaleLowerCase() === "all" ? "all" : e.target.textContent.toLocaleLowerCase())
+  if (filter === "all" && search === "") {
+    data = products;
+  }else if(filter === "all" && search !== "") {
+    data = products.filter(
+      (item) =>
+        item.title.toLocaleLowerCase().includes(search)
+    );
+  }else {
+    data = products.filter(
+      (item) =>
+        item.category.toLocaleLowerCase() === filter.toLocaleLowerCase() &&
+        item.title.toLocaleLowerCase().includes(search)
+    );
   }
 
   const handleSearch = (e) => {
-    const searchTerm = e.target.value.trim().toLowerCase();
-    const filteredProducts = newArr.filter(
-      (item) => item.title.toLowerCase().includes(searchTerm)
-    );
-    setNewArr(filteredProducts);
+    setSearch(e.target.value.toLocaleLowerCase());
   };
-
-
 
   return (
     <>
-      <Header categories={categories} handleCategory={handleCategory} btnActive={btnActive} />
+      <Header categories={categories} handleCategory={handleCategory} btnActive={filter} />
       <Form.Control
         placeholder="Search Product..."
         type="search"
@@ -41,7 +45,7 @@ const ProductsList = () => {
       />
       <Container className="product-list rounded-4 my-4 p-3">
         <Row className="g-3 justify-content-center">
-          {newArr.map((product) => (
+          {data.map((product) => (
             <ProductCard product={product} key={product.id}/>
           ))}
         </Row>
